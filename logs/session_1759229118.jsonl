@@ -1,0 +1,7 @@
+2025-09-30 13:45:18 [INFO] === New session ===
+2025-09-30 13:45:32 [INFO] User: /orderrr 1321324
+2025-09-30 13:45:32 [INFO] Bot: Извините, заказ с ID 1321324 не найден.
+2025-09-30 13:45:42 [INFO] User: /ord er 13r532
+2025-09-30 13:45:57 [INFO] Retrying request to /chat/completions in 0.431356 seconds
+2025-09-30 13:46:13 [INFO] Retrying request to /chat/completions in 0.899493 seconds
+2025-09-30 13:46:29 [ERROR] Error: Request timed out.
