@@ -1,0 +1,7 @@
+2025-09-30 14:38:50 [INFO] === New session ===
+2025-09-30 14:39:10 [INFO] User: /ored r 12345
+2025-09-30 14:39:35 [INFO] Retrying request to /chat/completions in 0.442734 seconds
+2025-09-30 14:39:48 [INFO] HTTP Request: POST https://openai.api.proxyapi.ru/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 14:39:48 [ERROR] Error: 'str' object has no attribute 'get'
+2025-09-30 14:40:32 [INFO] User: /order 12345
+2025-09-30 14:40:32 [INFO] Bot: Статус заказа 12345: в пути, доставка ожидается через 2дней службой ShoplyExpress

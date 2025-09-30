@@ -1,0 +1,4 @@
+2025-09-30 14:43:32 [INFO] === New session ===
+2025-09-30 14:43:39 [INFO] User: /ord r 12345
+2025-09-30 14:43:48 [INFO] HTTP Request: POST https://openai.api.proxyapi.ru/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-30 14:43:48 [ERROR] Error: 'str' object has no attribute 'get'

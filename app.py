@@ -53,7 +53,7 @@ def get_oreder(order_id):
     if order.get('status') == "in_transit":
         return (
             f"Статус заказа {order_id}: в пути, доставка ожидается через {order['eta_days']}"
-            f"дней службой {order['carrier']}"
+            f"суток службой {order['carrier']}"
         )
     elif order.get("status") == "delivered":
         date = order.get("delivered_at", "неизвестно когда")
@@ -66,17 +66,31 @@ def get_oreder(order_id):
 
 # считаем токены
 def count_tokens(usage):
-    return usage.get('total_tokens', 0)
+    return getattr(usage, "total_tokens", None)
 
 def chat_loop():
     print(f"Привет! Я бот поддержки {BRAND_NAME}. Для выхода напишите «выход».\n")
 
-    llm = ChatOpenAI(model_name="gpt-5", temperature=1, request_timeout=25)
+    llm = ChatOpenAI(model_name="gpt-5", temperature=1, request_timeout=40)
     memory = ConversationBufferMemory(k=CONTEXT_SIZE)
     conversation = ConversationChain(llm=llm, memory=memory)
     memory.chat_memory.add_message(
-         SystemMessage(content="Ты — полезный, вежливый и точный ассистент-консультант в комапнии по доставке товаров, если к тебе обращаются, то скорее всего не правильно указали номер заказа или такого вопроса не было в faq.")
+         SystemMessage(content="Ты — полезный, вежливый и точный ассистент-консультант в комапнии по доставке товаров Shoply, если к тебе обращаются, то скорее всего не правильно указали номер заказа или такого вопроса не было в faq.")
     )
+
+    memory.chat_memory.add_message(
+         SystemMessage(content=f"Перед ответом проверь есть ли схожий вопрос в {faq}, если есть возьми ответ от туда")
+    )
+
+    memory.chat_memory.add_message(
+         SystemMessage(content=f"Если хоят уточнить статус заказа, по возьми его из {orders}, если его там нет, то вежливо сообщи, что заказ не найден")
+    )
+
+    memory.chat_memory.add_message(
+         SystemMessage(content="Ты ")
+    )
+
+
 
     while True:
         try:
@@ -117,8 +131,7 @@ def chat_loop():
                     print(f"Бот: [Ошибка] {e}")
                     continue
 
-        bot_answer = bot_answer.strip()
-        logging.info(f"Bot: {bot_answer}")
+        logging.info(f"Bot: {bot_answer.strip()}")
         print(f"Бот: {bot_answer}")
 
 chat_loop()
